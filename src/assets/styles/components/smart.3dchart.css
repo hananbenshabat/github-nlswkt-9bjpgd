@@ -1,0 +1,186 @@
+smart-scroll-viewer {
+  display: block;
+  width: var(--smart-editor-width);
+  min-width: var(--smart-scroll-viewer-min-width);
+  max-width: var(--smart-scroll-viewer-max-width);
+  height: var(--smart-list-box-default-height);
+  min-height: var(--smart-scroll-viewer-min-height);
+  max-height: var(--smart-scroll-viewer-max-height);
+  padding: 3px;
+}
+.smart-scroll-viewer.smart-container,
+smart-scroll-viewer > .smart-container {
+  height: 100%;
+  width: 100%;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+.smart-scroll-viewer > .smart-container,
+.smart-scroll-viewer > .smart-container > .smart-scroll-viewer-container {
+  max-height: inherit;
+  min-height: inherit;
+  max-width: inherit;
+  min-width: inherit;
+}
+
+.smart-scroll-viewer smart-scroll-bar {
+  overflow: visible;
+  position: absolute;
+  bottom: 0;
+  height: calc(var(--smart-scroll-bar-size));
+  width: 100%;
+}
+.smart-scroll-viewer smart-scroll-bar:before {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: var(--smart-scroll-bar-size);
+  background-color: var(--smart-surface);
+  left: 100%;
+}
+.smart-scroll-viewer smart-scroll-bar.bottom-corner {
+  width: calc(100% - var(--smart-scroll-bar-size));
+}
+.smart-scroll-viewer smart-scroll-bar[orientation='vertical'] {
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: calc(var(--smart-scroll-bar-size));
+}
+.smart-scroll-viewer smart-scroll-bar[orientation='vertical'].bottom-corner {
+  height: calc(100% - var(--smart-scroll-bar-size));
+}
+.smart-scroll-viewer .smart-scroll-viewer-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  background-color: transparent;
+}
+.smart-scroll-viewer .smart-scroll-viewer-container.hscroll {
+  height: calc(100% - var(--smart-scroll-bar-size));
+}
+.smart-scroll-viewer .smart-scroll-viewer-container.vscroll {
+  width: calc(100% - var(--smart-scroll-bar-size));
+}
+.smart-scroll-viewer .smart-scroll-viewer-content-container {
+  width: auto;
+  height: auto;
+  display: inline-block;
+  padding: 5px;
+  position: relative;
+  background-color: transparent;
+}
+.smart-scroll-viewer[right-to-left] .smart-scroll-viewer-container {
+  direction: rtl;
+  text-align: initial;
+}
+.smart-scroll-viewer[right-to-left] .smart-scroll-viewer-container.vscroll,
+.smart-scroll-viewer[right-to-left] smart-scroll-bar {
+  left: var(--smart-scroll-bar-size);
+  right: 0;
+}
+.smart-scroll-viewer[right-to-left] smart-scroll-bar:after {
+  left: -100%;
+}
+.smart-scroll-viewer[right-to-left] smart-scroll-bar[orientation='vertical'] {
+  left: 0;
+  right: initial;
+}
+.smart-scroll-viewer[right-to-left]
+  smart-scroll-bar[orientation='vertical']:after {
+  content: none;
+}
+.smart-grid .smart-loader,
+.smart-list-box .smart-loader,
+.smart-list-menu .smart-loader,
+.smart-list-menu-view.smart-drop-down-repositioned .smart-loader,
+.smart-tree .smart-loader {
+  margin: inherit;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.85;
+  text-align: left;
+  border: 6px solid var(--smart-theme-border);
+  box-sizing: border-box;
+  background-clip: padding-box;
+  border-radius: 50%;
+  z-index: 10;
+  width: calc(var(--smart-loader-size) + 10px);
+  height: calc(var(--smart-loader-size) + 10px);
+}
+.smart-grid .smart-loader:after,
+.smart-grid .smart-loader:before,
+.smart-list-box .smart-loader:after,
+.smart-list-box .smart-loader:before,
+.smart-list-menu .smart-loader:after,
+.smart-list-menu .smart-loader:before,
+.smart-list-menu-view.smart-drop-down-repositioned .smart-loader:after,
+.smart-list-menu-view.smart-drop-down-repositioned .smart-loader:before,
+.smart-tree .smart-loader:after,
+.smart-tree .smart-loader:before {
+  content: '';
+  position: absolute;
+  margin: -6px;
+  box-sizing: inherit;
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  opacity: 1;
+  border: inherit inherit transparent;
+  border-width: 6px;
+  animation: smart-loader-spin 1.1s cubic-bezier(0.6, 0.2, 0, 0.8) infinite,
+    smart-loader-spin-fade 1.1s linear infinite;
+}
+.smart-grid .smart-loader.smart-hidden,
+.smart-list-box .smart-loader.smart-hidden,
+.smart-list-menu .smart-loader.smart-hidden,
+.smart-list-menu-view.smart-drop-down-repositioned .smart-loader.smart-hidden,
+.smart-tree .smart-loader.smart-hidden {
+  display: none;
+}
+.smart-grid[loading-indicator-position='center'] .smart-loader,
+.smart-list-box[loading-indicator-position='center'] .smart-loader,
+.smart-list-menu-view.smart-drop-down-repositioned[loading-indicator-position='center']
+  .smart-loader,
+.smart-list-menu[loading-indicator-position='center'] .smart-loader,
+.smart-tree[loading-indicator-position='center'] .smart-loader {
+  width: calc(var(--smart-loader-size) + 10px);
+  height: calc(var(--smart-loader-size) + 10px);
+}
+.smart-grid[loading-indicator-position='bottom'] .smart-loader-container,
+.smart-list-box[loading-indicator-position='bottom'] .smart-loader-container,
+.smart-list-menu-view.smart-drop-down-repositioned[loading-indicator-position='bottom']
+  .smart-loader-container,
+.smart-list-menu[loading-indicator-position='bottom'] .smart-loader-container,
+.smart-tree[loading-indicator-position='bottom'] .smart-loader-container {
+  top: -10%;
+}
+.smart-grid[loading-indicator-position='top'] .smart-loader-container,
+.smart-list-box[loading-indicator-position='top'] .smart-loader-container,
+.smart-list-menu-view.smart-drop-down-repositioned[loading-indicator-position='top']
+  .smart-loader-container,
+.smart-list-menu[loading-indicator-position='top'] .smart-loader-container,
+.smart-tree[loading-indicator-position='top'] .smart-loader-container {
+  top: 0;
+}
+.smart-grid[loading-indicator-position='bottom'] .smart-loader,
+.smart-grid[loading-indicator-position='top'] .smart-loader,
+.smart-list-box[loading-indicator-position='bottom'] .smart-loader,
+.smart-list-box[loading-indicator-position='top'] .smart-loader,
+.smart-list-menu-view.smart-drop-down-repositioned[loading-indicator-position='bottom']
+  .smart-loader,
+.smart-list-menu-view.smart-drop-down-repositioned[loading-indicator-position='top']
+  .smart-loader,
+.smart-list-menu[loading-indicator-position='bottom'] .smart-loader,
+.smart-list-menu[loading-indicator-position='top'] .smart-loader,
+.smart-tree[loading-indicator-position='bottom'] .smart-loader,
+.smart-tree[loading-indicator-position='top'] .smart-loader {
+  width: var(--smart-loader-size);
+  height: var(--smart-loader-size);
+  left: 20%;
+}
